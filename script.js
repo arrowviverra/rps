@@ -9,23 +9,34 @@ function getHumanChoice() {
     return input.toLowerCase();
 }
 
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+const humanChoice = document.querySelector("#humanChoice");
+const computerChoice = document.querySelector("#computerChoice");
+const humanScoreDisplay = document.querySelector("#humanScore");
+const computerScoreDisplay = document.querySelector("#computerScore");
+const result = document.querySelector("#result");
+
+btnRock.addEventListener("click", function() {playRound("rock")});
+btnPaper.addEventListener("click", function() {playRound("paper")});
+btnScissors.addEventListener("click", function() {playRound("scissors")});
+
 // initializes score counters at 0
 let humanScore = 0;
 let computerScore = 0;
-let roundCount = 0;
 
 // compares choice variables and increments score counters
-function playRound() {
+function playRound(humanChoice) {
 
     // converts both choice function outputs to selection variables, aka args
-    let humanChoice = getHumanChoice();
+    // let humanChoice = getHumanChoice();
     console.log("You have chosen " +humanChoice+ "!");
     let computerChoice = getComputerChoice();
     console.log("The computer has chosen " +computerChoice+ "!");
 
     // evaluates choices vs win conditions
     if (humanChoice === computerChoice) {
-        ++roundCount
         console.log("It's a draw! The score has not changed.")
     }
     // all computer win conditions
@@ -33,7 +44,6 @@ function playRound() {
         || (humanChoice === "paper" && computerChoice === "scissors")
         || (humanChoice === "scissors" && computerChoice === "rock")
     ) {
-        ++roundCount
         ++computerScore
         console.log("The score is currently You: " +humanScore+ ", Computer: " +computerScore+ ".")
     }
@@ -42,33 +52,32 @@ function playRound() {
         || (humanChoice === "paper" && computerChoice === "rock")
         || (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        ++roundCount
         ++humanScore
         console.log("The score is currently You: " +humanScore+ ", Computer: " +computerScore+ ".")
     }
 
-    //after 5 rounds, runs checkScore()
-    if (roundCount === 5) {
+    //after 5 points, runs checkScore()
+    if (humanScore === 5 || computerScore === 5) {
         checkScore(humanScore, computerScore);
-    }
-}
-
-//runs playRound() x number of times
-function playGame(x) {
-    for (let round = 1; round <= x; round++) {
-        playRound();
     }
 }
 
 // compares scores and displays win/loss message
 function checkScore(humanScore, computerScore) {
     if (humanScore > computerScore) {
-        console.log("You win! Refresh to play again.");
+        console.log("You won! Refresh to play again.");
+        let winText = document.createElement("p");
+        winText.textContent = "You win! Refresh to play again.";
+        result.appendChild(winText);
     } if (humanScore < computerScore) {
-        console.log("You have lost! Refresh to play again.")
+        console.log("You have lost! Refresh to play again.");
+        let loseText = document.createElement("p");
+        loseText.textContent = "You have lost! Refresh to play again.";
+        result.appendChild(loseText);
     } if (humanScore === computerScore) {
         console.log("It's a draw! Refresh to play again.");
+        let drawText = document.createElement("p");
+        drawText.textContent = "It's a draw! Refresh to play again.";
+        result.appendChild(drawText);
     }
 }
-
-playGame(5);
