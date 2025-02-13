@@ -1,0 +1,18 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    gap: 6px;
+}
+.buttons {
+    display: inline-block;
+}
+.choices {
+    display: inline-block;
+}
+.scores {
+    display: inline-block;
+}
+.refresh {
+    width: fit-content;
+}

@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <p>You have chosen:</p>
-    <div id="humanChoice">(Your selection will appear here.)</div>
-    <p>Opponent has chosen:</p>
-    <div id="computerChoice">(The opponent's selection will appear here.)</div>
-    <p>Your Score:</p>
-    <div id="humanScoreDisplay"></div>
-    <p>Opponent Score:</p>
-    <div id="computerScoreDisplay"></div>
-    <div id="result"></div>
+    <div class="buttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div class="choices">
+        <div>You have chosen: <span id="humanChoice"></span></div>
+        <div>Opponent has chosen: <span id="computerChoice"></span></div>
+    </div>
+
+    <div class="scores">
+        <div>Your Score: <span id="humanScore"></span></div>
+        <div>Opponent Score: <span id="computerScore"></span></div>
+    </div>
+
+    <div id="gameResult"></div>
+    <button class="refresh" onClick="window.location.href=window.location.href">Play Again!</button>
 
     <script src="script.js"></script>
 </body>
